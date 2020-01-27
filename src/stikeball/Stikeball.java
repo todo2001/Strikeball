@@ -14,10 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Stikeball {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
          Socket socket = null;
         String indirizzo = null;
          ServerSocket server = null;
+         String messaggio;
         boolean connesso = false;
         try {
             server = new ServerSocket(2200);
@@ -32,21 +33,19 @@ public class Stikeball {
             System.out.println(indirizzo);
             System.out.println("Server Socket:" + socket.getLocalSocketAddress());
             System.out.println("Socket client:" + socket.getRemoteSocketAddress());
-             BufferedReader input = new BufferedReader(new InputStreamReader(Client.getInputStream()));
-            PrintWriter out = new PrintWriter(Client.getOutputStream(), true);
-            String clientMessage=input.readLine();
+            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            messaggio = in.readLine();
+            System.out.println("Messaggio dal Client:"+ messaggio);
             out.println("ciao");
-            input.close();
-            out.close();
-            
-            
         }catch(SocketTimeoutException e){
             System.out.println("Errore di I/O");
         }
         catch (IOException ex) {
             Logger.getLogger(Stikeball.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    
+        }
+        
+        
             try{
             if(socket!=null) {
                 socket.close();
@@ -58,6 +57,8 @@ public class Stikeball {
             
             
     }
+
+
 
     }
   

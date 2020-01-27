@@ -2,6 +2,8 @@
 package stikeball;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,16 +20,17 @@ public class Client {
 
         Socket socket = null;
         String indirizzo = null;
+        String messaggio;
         try{
             socket = new Socket("127.0.0.1", 2200);
             indirizzo = InetAddress.getLocalHost().getHostAddress();
             System.out.println(indirizzo);
             System.out.println("Connessione aperta");
-            BufferedReader in = new BufferedReader(new InputStreamReader(Stikeball.getInputStream()));
-            PrintWriter output=new PrintWriter(Stikeball.getOutputStream(),true);
-            String clientMessage=in.readLine();
-            in.close();
-            output.close();
+             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            out.println("ciao!");
+            messaggio = input.readLine();
+            System.out.println("Messaggio del Server:"+ messaggio);
         }
         catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
