@@ -37,7 +37,7 @@ public class Stikeball {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             messaggio = in.readLine();
             System.out.println("Messaggio dal Client:"+ messaggio);
-            out.println("ciao");
+            out.println("ciao sono il serverS");
         }catch(SocketTimeoutException e){
             System.out.println("Errore di I/O");
         }

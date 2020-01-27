@@ -28,7 +28,7 @@ public class Client {
             System.out.println("Connessione aperta");
              BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-            out.println("ciao!");
+            out.println("ciao! sono il client");
             messaggio = input.readLine();
             System.out.println("Messaggio del Server:"+ messaggio);
         }
