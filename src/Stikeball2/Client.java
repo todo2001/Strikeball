@@ -1,5 +1,5 @@
 
-package stikeball;
+package Stikeball2;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -22,7 +22,7 @@ public class Client {
         String indirizzo = null;
         String messaggio;
         try{
-            socket = new Socket("127.0.0.1", 2200);
+            socket = new Socket("127.0.0.1", 3000);
             indirizzo = InetAddress.getLocalHost().getHostAddress();
             System.out.println(indirizzo);
             System.out.println("Connessione aperta");
